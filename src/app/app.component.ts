@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {selectJeux} from './store/jeux.selectors';
-import {selectionneCase} from './store/jeux.actions';
+import {nouveauJeaux, selectionneCase} from './store/jeux.actions';
 import {Observable} from 'rxjs';
 import {AppState} from './store/app.state';
+import {JoueursConstantes} from './joueurs.constantes';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +14,13 @@ import {AppState} from './store/app.state';
 export class AppComponent implements OnInit {
   title = 'tictactoejs';
 
-  readonly JOUEUR1 = 1;
-  readonly JOUEUR2 = 2;
-  readonly JOUEUR1_AFFICHAGE = 'X';
-  readonly JOUEUR2_AFFICHAGE = 'O';
   tab: string[][] = [['', '', ''], ['', '', ''], ['', '', '']];
-  joueurCourant: number = this.JOUEUR1;
-  jeuxTermine: boolean=false;
-  joueurGagnant: number=0;
+  joueurCourant: number = JoueursConstantes.JOUEUR1;
+  jeuxTermine: boolean = false;
+  joueurGagnant: number = 0;
+
+  public joueursConstantes: typeof JoueursConstantes = JoueursConstantes;
+  // joueursConstantes = JoueursConstantes;
 
   // @ts-ignore
   jeux$: Observable<AppState>;
@@ -44,8 +44,8 @@ export class AppComponent implements OnInit {
             if (tab) {
               this.tab = tab;
               this.joueurCourant = tmp.joueurCourant;
-              this.jeuxTermine=tmp.fini;
-              this.joueurGagnant=tmp.joueurGagnant;
+              this.jeuxTermine = tmp.fini;
+              this.joueurGagnant = tmp.joueurGagnant;
             }
           }
         }
@@ -81,10 +81,14 @@ export class AppComponent implements OnInit {
 
   selection(ligne: number, colonne: number): void {
     console.log('selection', ligne, colonne);
-    if (this.joueurCourant === this.JOUEUR1) {
+    if (this.joueurCourant === JoueursConstantes.JOUEUR1) {
       this.store.dispatch(selectionneCase({joueur: this.joueurCourant, ligne, colonne}));
     } else {
       this.store.dispatch(selectionneCase({joueur: this.joueurCourant, ligne, colonne}));
     }
+  }
+
+  nouveauJeaux(): void {
+    this.store.dispatch(nouveauJeaux({joueur: 0}));
   }
 }

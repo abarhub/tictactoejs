@@ -21,15 +21,19 @@
     </table>
 
     <div>
-      <div [ngClass]="{'joueurSelectionne': joueurCourant===JOUEUR1}">Joueur 1 {{JOUEUR1_AFFICHAGE}} <span *ngIf="joueurCourant===JOUEUR1"><= Joueur qui joue</span></div>
-      <div [ngClass]="{'joueurSelectionne': joueurCourant===JOUEUR2}">Joueur 2 {{JOUEUR2_AFFICHAGE}} <span *ngIf="joueurCourant===JOUEUR2"><= Joueur qui joue</span></div>
+      <div [ngClass]="{'joueurSelectionne': joueurCourant===joueursConstantes.JOUEUR1}">Joueur 1 {{joueursConstantes.JOUEUR1_AFFICHAGE}} <span *ngIf="joueurCourant===joueursConstantes.JOUEUR1"><= Joueur qui joue</span></div>
+      <div [ngClass]="{'joueurSelectionne': joueurCourant===joueursConstantes.JOUEUR2}">Joueur 2 {{joueursConstantes.JOUEUR2_AFFICHAGE}} <span *ngIf="joueurCourant===joueursConstantes.JOUEUR2"><= Joueur qui joue</span></div>
     </div>
 
   <div *ngIf="jeuxTermine">
     <div>Le jeux est terminé.</div>
-    <div *ngIf="joueurGagnant===1">Le gagnant est le Joueur 1</div>
-    <div *ngIf="joueurGagnant===2">Le gagnant est le Joueur 2</div>
-    <div *ngIf="joueurGagnant===0">Il n'y a pas de gagnant</div>
+    <div *ngIf="joueurGagnant===joueursConstantes.JOUEUR1">Le gagnant est le Joueur 1</div>
+    <div *ngIf="joueurGagnant===joueursConstantes.JOUEUR2">Le gagnant est le Joueur 2</div>
+    <div *ngIf="joueurGagnant!==joueursConstantes.JOUEUR1 && joueurGagnant!==joueursConstantes.JOUEUR2">Il n'y a pas de gagnant</div>
+  </div>
+
+  <div>
+    <button (click)="nouveauJeaux()">Nouveau Jeaux</button>
   </div>
 
 </div>
