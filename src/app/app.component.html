@@ -1,12 +1,10 @@
-<div>
+<div class="d-flex flex-column align-items-center">
 
   <h1>Tic Tac Toe</h1>
 
-  <div>
-
     <table border="1" style="width: 200px; height: 200px">
       <tr>
-        <td (click)="selection(1,1)">{{tab[0][0]}}</td>
+        <td (click)="selection(1,1)" class="align-middle">{{tab[0][0]}}</td>
         <td (click)="selection(1,2)">{{tab[0][1]}}</td>
         <td (click)="selection(1,3)">{{tab[0][2]}}</td>
       </tr>
@@ -23,11 +21,9 @@
     </table>
 
     <div>
-      <div [ngClass]="{'joueurSelectionne': joueurCourant===JOUEUR1}">Joueur 1 {{JOUEUR1_AFFICHAGE}}</div>
-      <div [ngClass]="{'joueurSelectionne': joueurCourant===JOUEUR2}">Joueur 2 {{JOUEUR2_AFFICHAGE}}</div>
+      <div [ngClass]="{'joueurSelectionne': joueurCourant===JOUEUR1}">Joueur 1 {{JOUEUR1_AFFICHAGE}} <span *ngIf="joueurCourant===JOUEUR1"><= Joueur qui joue</span></div>
+      <div [ngClass]="{'joueurSelectionne': joueurCourant===JOUEUR2}">Joueur 2 {{JOUEUR2_AFFICHAGE}} <span *ngIf="joueurCourant===JOUEUR2"><= Joueur qui joue</span></div>
     </div>
-
-  </div>
 
 
 </div>
