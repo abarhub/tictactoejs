@@ -19,12 +19,15 @@ export class AppComponent implements OnInit {
   readonly JOUEUR2_AFFICHAGE = 'O';
   tab: string[][] = [['', '', ''], ['', '', ''], ['', '', '']];
   joueurCourant: number = this.JOUEUR1;
+  jeuxTermine: boolean=false;
+  joueurGagnant: number=0;
 
   // @ts-ignore
-  jeux$: Observable<AppState> = this.store.pipe(select(selectJeux));
+  jeux$: Observable<AppState>;
 
   constructor(private store: Store) {
-
+    // @ts-ignore
+    this.jeux$ = this.store.pipe(select(selectJeux));
   }
 
   ngOnInit(): void {
@@ -35,12 +38,14 @@ export class AppComponent implements OnInit {
           const tmp = (data.jeux as unknown) as AppState;
           console.log('ngOnInit jeux', tmp);
           if (tmp && tmp.jeux && tmp.jeux.length === 3) {
-            let tab: Array<Array<string>> | null = null;
+            let tab: Array<Array<string>> | null;
             tab = this.copieTab(tmp.jeux);
             console.info('copie tab', tab);
             if (tab) {
               this.tab = tab;
               this.joueurCourant = tmp.joueurCourant;
+              this.jeuxTermine=tmp.fini;
+              this.joueurGagnant=tmp.joueurGagnant;
             }
           }
         }

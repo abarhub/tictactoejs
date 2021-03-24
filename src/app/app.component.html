@@ -25,5 +25,11 @@
       <div [ngClass]="{'joueurSelectionne': joueurCourant===JOUEUR2}">Joueur 2 {{JOUEUR2_AFFICHAGE}} <span *ngIf="joueurCourant===JOUEUR2"><= Joueur qui joue</span></div>
     </div>
 
+  <div *ngIf="jeuxTermine">
+    <div>Le jeux est terminé.</div>
+    <div *ngIf="joueurGagnant===1">Le gagnant est le Joueur 1</div>
+    <div *ngIf="joueurGagnant===2">Le gagnant est le Joueur 2</div>
+    <div *ngIf="joueurGagnant===0">Il n'y a pas de gagnant</div>
+  </div>
 
 </div>
