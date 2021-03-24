@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {selectJeux} from './store/jeux.selectors';
 import {selectionneCase} from './store/jeux.actions';
+import {Observable} from 'rxjs';
+import {AppState} from './store/app.state';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,7 @@ export class AppComponent implements OnInit {
   joueurCourant: number = this.JOUEUR1;
 
   // @ts-ignore
-  jeux$ = this.store.pipe(select(selectJeux));
+  jeux$: Observable<AppState> = this.store.pipe(select(selectJeux));
 
   constructor(private store: Store) {
 
@@ -27,12 +29,20 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.jeux$.subscribe(data => {
-      console.log('jeux', data);
-      if (data && data.length === 3) {
-        let tab: Array<Array<string>> | null = null;
-        tab = this.copieTab(data);
-        if (tab) {
-          this.tab = tab;
+      console.log('ngOnInit jeux', data, data.jeux);
+      if (data) {
+        if (data.jeux) {
+          const tmp = (data.jeux as unknown) as AppState;
+          console.log('ngOnInit jeux', tmp);
+          if (tmp && tmp.jeux && tmp.jeux.length === 3) {
+            let tab: Array<Array<string>> | null = null;
+            tab = this.copieTab(tmp.jeux);
+            console.info('copie tab', tab);
+            if (tab) {
+              this.tab = tab;
+              this.joueurCourant = tmp.joueurCourant;
+            }
+          }
         }
       }
     }, error => {
@@ -42,12 +52,12 @@ export class AppComponent implements OnInit {
 
   private copieTab(tableau: Array<Array<string>>): Array<Array<string>> | null {
     if (tableau && tableau.length === 3) {
-      let tab: Array<Array<string>> = [];
+      const tab: Array<Array<string>> = [];
       for (let i = 0; i < 3; i++) {
         if (tableau[i].length !== 3) {
           return null;
         }
-        let tab2: Array<string> = [];
+        const tab2: Array<string> = [];
         tab.push(tab2);
         for (let j = 0; j < 3; j++) {
           const valeur = tableau[i][j];
@@ -68,10 +78,8 @@ export class AppComponent implements OnInit {
     console.log('selection', ligne, colonne);
     if (this.joueurCourant === this.JOUEUR1) {
       this.store.dispatch(selectionneCase({joueur: this.joueurCourant, ligne, colonne}));
-      this.joueurCourant = this.JOUEUR2;
     } else {
       this.store.dispatch(selectionneCase({joueur: this.joueurCourant, ligne, colonne}));
-      this.joueurCourant = this.JOUEUR1;
     }
   }
 }
