@@ -6,6 +6,8 @@ import {AppState} from '../store/app.state';
 import {Observable} from 'rxjs';
 import {GridService} from '../services/grid.service';
 import {GridModel} from '../model/grid.model';
+import {JoueurEnum} from '../model/joueur.enum';
+import {JoueursConstantes} from '../constantes/joueurs.constantes';
 
 @Component({
   selector: 'app-grid',
@@ -37,7 +39,6 @@ export class GridComponent implements OnInit {
           if (tmp && tmp.jeux) {
             let tab: GridModel | null;
             tab = this.gridService.copieGrille(tmp.jeux);
-            console.info('copie tab GridComponent', tab);
             if (tab) {
               this.tab = tab;
             }
@@ -51,5 +52,20 @@ export class GridComponent implements OnInit {
 
   selection(ligne: number, colonne: number): void {
     this.selectionCase.emit({ligne, colonne});
+  }
+
+  get(ligne: number, colonne: number): string {
+    if (this.tab) {
+      const valeur = this.tab.get(ligne, colonne);
+      if (valeur === JoueurEnum.JOUEUR1) {
+        return JoueursConstantes.JOUEUR1_AFFICHAGE;
+      } else if (valeur === JoueurEnum.JOUEUR2) {
+        return JoueursConstantes.JOUEUR2_AFFICHAGE;
+      } else {
+        return '';
+      }
+    } else {
+      return '';
+    }
   }
 }

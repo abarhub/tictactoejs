@@ -1,8 +1,9 @@
 import {GridModel} from '../model/grid.model';
+import {JoueurEnum} from '../model/joueur.enum';
 
 export interface AppState {
   jeux: GridModel;
-  joueurCourant: number;
+  joueurCourant: JoueurEnum;
   fini: boolean;
-  joueurGagnant: number;
+  joueurGagnant: JoueurEnum | null;
 }

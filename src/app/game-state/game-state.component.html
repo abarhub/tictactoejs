@@ -1,13 +1,13 @@
 
 <div class="m-2">
-  <div [ngClass]="{'joueurSelectionne': joueurCourant===joueursConstantes.JOUEUR1&&!jeuxTermine, 'border-success text-success': joueurGagnant===joueursConstantes.JOUEUR1&&jeuxTermine}" class="joueur m-2 p-2 border rounded">Joueur 1 ({{joueursConstantes.JOUEUR1_AFFICHAGE}})</div>
-  <div [ngClass]="{'joueurSelectionne': joueurCourant===joueursConstantes.JOUEUR2&&!jeuxTermine, 'border-success text-success': joueurGagnant===joueursConstantes.JOUEUR2&&jeuxTermine}" class="joueur m-2 p-2 border rounded">Joueur 2 ({{joueursConstantes.JOUEUR2_AFFICHAGE}})</div>
+  <div [ngClass]="{'joueurSelectionne': joueurCourant===joueurEnum.JOUEUR1&&!jeuxTermine, 'border-success text-success': joueurGagnant===joueurEnum.JOUEUR1&&jeuxTermine}" class="joueur m-2 p-2 border rounded">Joueur 1 ({{joueursConstantes.JOUEUR1_AFFICHAGE}})</div>
+  <div [ngClass]="{'joueurSelectionne': joueurCourant===joueurEnum.JOUEUR2&&!jeuxTermine, 'border-success text-success': joueurGagnant===joueurEnum.JOUEUR2&&jeuxTermine}" class="joueur m-2 p-2 border rounded">Joueur 2 ({{joueursConstantes.JOUEUR2_AFFICHAGE}})</div>
 </div>
 
-<div *ngIf="jeuxTermine" style="border border-success rounded">
+<div *ngIf="jeuxTermine" class="border border-success rounded mp-2">
   <div>Le jeux est terminé.</div>
-  <div *ngIf="joueurGagnant===joueursConstantes.JOUEUR1">Le gagnant est le Joueur 1</div>
-  <div *ngIf="joueurGagnant===joueursConstantes.JOUEUR2">Le gagnant est le Joueur 2</div>
-  <div *ngIf="joueurGagnant!==joueursConstantes.JOUEUR1 && joueurGagnant!==joueursConstantes.JOUEUR2">Il n'y a pas de gagnant</div>
+  <div *ngIf="joueurGagnant===joueurEnum.JOUEUR1">Le gagnant est le Joueur 1</div>
+  <div *ngIf="joueurGagnant===joueurEnum.JOUEUR2">Le gagnant est le Joueur 2</div>
+  <div *ngIf="joueurGagnant!==joueurEnum.JOUEUR1 && joueurGagnant!==joueurEnum.JOUEUR2">Il n'y a pas de gagnant</div>
 </div>
 

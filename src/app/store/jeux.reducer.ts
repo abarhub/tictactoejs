@@ -1,48 +1,48 @@
 import {createReducer, on} from '@ngrx/store';
 import {nouveauJeaux, selectionneCase} from './jeux.actions';
 import {AppState} from './app.state';
-import {JoueursConstantes} from '../constantes/joueurs.constantes';
 import {GridService} from '../services/grid.service';
 import {GridModel} from '../model/grid.model';
+import {JoueurEnum} from '../model/joueur.enum';
 
 const gridService: GridService = new GridService();
 
 export const initialState: AppState = {
   jeux: gridService.creerGrilleVide(),
-  joueurCourant: JoueursConstantes.JOUEUR1,
+  joueurCourant: JoueurEnum.JOUEUR1,
   fini: false,
-  joueurGagnant: 0
+  joueurGagnant: null
 };
 
 export const jeuxReducer = createReducer(
   initialState,
-  on(selectionneCase, (state, {joueur, ligne, colonne}) => {
+  on(selectionneCase, (state, {ligne, colonne}) => {
     if (ligne < 1 || ligne > 3 || colonne < 1 || colonne > 3 || state.fini) {
       return state;
     }
-    let newStateTab: Array<Array<string>> = [];
+    let newStateTab: Array<Array<JoueurEnum | null>>;
     let modification = false;
     let joueurCourant = state.joueurCourant;
     const grid: GridModel = state.jeux;
     newStateTab = grid.getCopy();
     const valeurPrecedante = grid.get(ligne - 1, colonne - 1);
 
-    const nouvelleValeur = (joueurCourant === JoueursConstantes.JOUEUR1) ?
-      JoueursConstantes.JOUEUR1_AFFICHAGE : JoueursConstantes.JOUEUR2_AFFICHAGE;
-    if (valeurPrecedante === '') {
+    const nouvelleValeur = (joueurCourant === JoueurEnum.JOUEUR1) ?
+      JoueurEnum.JOUEUR1 : JoueurEnum.JOUEUR2;
+    if (valeurPrecedante === null) {
       modification = true;
       newStateTab[ligne - 1][colonne - 1] = nouvelleValeur;
-      if (joueurCourant === JoueursConstantes.JOUEUR1) {
-        joueurCourant = JoueursConstantes.JOUEUR2;
+      if (joueurCourant === JoueurEnum.JOUEUR1) {
+        joueurCourant = JoueurEnum.JOUEUR2;
       } else {
-        joueurCourant = JoueursConstantes.JOUEUR1;
+        joueurCourant = JoueurEnum.JOUEUR1;
       }
     }
 
     if (modification) {
       const nouvelleGrille = new GridModel(newStateTab);
       const joueurGagnant = nouvelleGrille.calculJoueurGagnant();
-      const fini = joueurGagnant !== 0;
+      const fini = joueurGagnant !== null;
       const newState: AppState = {
         jeux: nouvelleGrille,
         joueurCourant,
@@ -54,12 +54,12 @@ export const jeuxReducer = createReducer(
       return state;
     }
   }),
-  on(nouveauJeaux, (state, {joueur}) => {
+  on(nouveauJeaux, (_) => {
     const newState: AppState = {
       jeux: gridService.creerGrilleVide(),
-      joueurCourant: JoueursConstantes.JOUEUR1,
+      joueurCourant: JoueurEnum.JOUEUR1,
       fini: false,
-      joueurGagnant: 0
+      joueurGagnant: null
     };
     return newState;
   })

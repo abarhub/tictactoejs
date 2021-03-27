@@ -4,6 +4,7 @@ import {select, Store} from '@ngrx/store';
 import {selectJeux} from '../store/jeux.selectors';
 import {Observable} from 'rxjs';
 import {AppState} from '../store/app.state';
+import {JoueurEnum} from '../model/joueur.enum';
 
 @Component({
   selector: 'app-game-state',
@@ -12,9 +13,11 @@ import {AppState} from '../store/app.state';
 })
 export class GameStateComponent implements OnInit {
 
-  joueurCourant: number = JoueursConstantes.JOUEUR1;
-  jeuxTermine: boolean = false;
-  joueurGagnant: number = 0;
+  joueurCourant: JoueurEnum = JoueurEnum.JOUEUR1;
+  jeuxTermine = false;
+  joueurGagnant: JoueurEnum | null = null;
+
+  public joueurEnum: typeof JoueurEnum = JoueurEnum;
 
   public joueursConstantes: typeof JoueursConstantes = JoueursConstantes;
 

@@ -24,13 +24,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  nouveauJeaux(): void {
-    this.store.dispatch(nouveauJeaux({joueur: 0}));
+  nouveauJeux(): void {
+    this.store.dispatch(nouveauJeaux());
   }
 
   selectionCase(caseSelectionnee: CaseModel): void {
     if (caseSelectionnee) {
-      this.store.dispatch(selectionneCase({joueur: 0, ligne: caseSelectionnee.ligne, colonne: caseSelectionnee.colonne}));
+      this.store.dispatch(selectionneCase({ligne: caseSelectionnee.ligne, colonne: caseSelectionnee.colonne}));
     }
   }
 }
