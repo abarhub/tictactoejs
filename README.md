@@ -5,4 +5,4 @@ Ce projet a été généré avec [Angular CLI](https://github.com/angular/angula
 C'est un jeux Tic Tac Toe (morpion).
 Le site est [ici](https://abarhub.github.io/tictactoejs/).
 
-![Capture d'écran](https://github.com/abarhub/tictactoejs/blob/master/jeux_tictactoe.png?raw=true)
+![Capture d'écran](https://github.com/abarhub/tictactoejs/blob/master/img/jeux_tictactoe.png?raw=true)
