@@ -1,10 +1,20 @@
 import {JoueursConstantes} from '../constantes/joueurs.constantes';
 
+
 export class GridModel {
-  private grid: Array<Array<string>>;
+  private grid: ReadonlyArray<ReadonlyArray<string>>;
 
   constructor(grid: Array<Array<string>>) {
-    this.grid = grid;
+    const tab3: Array<ReadonlyArray<string>> = new Array<ReadonlyArray<string>>();
+    for (let i = 0; i < 3; i++) {
+      const tab: Array<string> = new Array<string>();
+      for (let j = 0; j < 3; j++) {
+        tab.push(grid[i][j]);
+      }
+      const tab2: ReadonlyArray<string> = tab;
+      tab3.push(tab2);
+    }
+    this.grid = tab3;
   }
 
   get(ligne: number, colonne: number): string {
@@ -12,7 +22,7 @@ export class GridModel {
   }
 
   calculJoueurGagnant(): number {
-    const tab: Array<Array<string>> = this.grid;
+    const tab: ReadonlyArray<ReadonlyArray<string>> = this.grid;
 
     // vérification si une ligne a la même valeur
     for (let i = 0; i < 3; i++) {
@@ -84,6 +94,18 @@ export class GridModel {
     }
 
     return 0;
+  }
+
+  getCopy(): Array<Array<string>> {
+    const tab:Array<Array<string>> = new Array<Array<string>>();
+    for (let i = 0; i < 3; i++) {
+      const tab2: Array<string> = new Array<string>();
+      tab.push(tab2);
+      for (let j = 0; j < 3; j++) {
+        tab2.push(this.grid[i][j]);
+      }
+    }
+    return tab;
   }
 
 }

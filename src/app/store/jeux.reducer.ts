@@ -20,34 +20,25 @@ export const jeuxReducer = createReducer(
     if (ligne < 1 || ligne > 3 || colonne < 1 || colonne > 3 || state.fini) {
       return state;
     }
-    const newStateTab: Array<Array<string>> = [];
+    let newStateTab: Array<Array<string>> = [];
     let modification = false;
     let joueurCourant = state.joueurCourant;
     const grid: GridModel = state.jeux;
-    for (let i = 0; i < 3; i++) {
-      const tab: Array<string> = [];
-      newStateTab.push(tab);
-      for (let j = 0; j < 3; j++) {
-        const valeurPrecedante = grid.get(i, j);
-        if (i === ligne - 1 && j === colonne - 1) {
-          const nouvelleValeur = (joueurCourant === JoueursConstantes.JOUEUR1) ?
-            JoueursConstantes.JOUEUR1_AFFICHAGE : JoueursConstantes.JOUEUR2_AFFICHAGE;
-          if (valeurPrecedante === '') {
-            tab.push(nouvelleValeur);
-            modification = true;
-            if (joueurCourant === JoueursConstantes.JOUEUR1) {
-              joueurCourant = JoueursConstantes.JOUEUR2;
-            } else {
-              joueurCourant = JoueursConstantes.JOUEUR1;
-            }
-          } else {
-            tab.push(valeurPrecedante);
-          }
-        } else {
-          tab.push(valeurPrecedante);
-        }
+    newStateTab = grid.getCopy();
+    const valeurPrecedante = grid.get(ligne - 1, colonne - 1);
+
+    const nouvelleValeur = (joueurCourant === JoueursConstantes.JOUEUR1) ?
+      JoueursConstantes.JOUEUR1_AFFICHAGE : JoueursConstantes.JOUEUR2_AFFICHAGE;
+    if (valeurPrecedante === '') {
+      modification = true;
+      newStateTab[ligne - 1][colonne - 1] = nouvelleValeur;
+      if (joueurCourant === JoueursConstantes.JOUEUR1) {
+        joueurCourant = JoueursConstantes.JOUEUR2;
+      } else {
+        joueurCourant = JoueursConstantes.JOUEUR1;
       }
     }
+
     if (modification) {
       const nouvelleGrille = new GridModel(newStateTab);
       const joueurGagnant = nouvelleGrille.calculJoueurGagnant();
