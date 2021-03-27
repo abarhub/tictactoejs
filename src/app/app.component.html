@@ -2,38 +2,12 @@
 
   <h1>Tic Tac Toe</h1>
 
-    <table border="1" style="width: 200px; height: 200px">
-      <tr>
-        <td (click)="selection(1,1)" class="align-middle">{{tab[0][0]}}</td>
-        <td (click)="selection(1,2)">{{tab[0][1]}}</td>
-        <td (click)="selection(1,3)">{{tab[0][2]}}</td>
-      </tr>
-      <tr>
-        <td (click)="selection(2,1)">{{tab[1][0]}}</td>
-        <td (click)="selection(2,2)">{{tab[1][1]}}</td>
-        <td (click)="selection(2,3)">{{tab[1][2]}}</td>
-      </tr>
-      <tr>
-        <td (click)="selection(3,1)">{{tab[2][0]}}</td>
-        <td (click)="selection(3,2)">{{tab[2][1]}}</td>
-        <td (click)="selection(3,3)">{{tab[2][2]}}</td>
-      </tr>
-    </table>
+  <app-grid (selectionCase)="selectionCase($event)"></app-grid>
 
-    <div>
-      <div [ngClass]="{'joueurSelectionne': joueurCourant===joueursConstantes.JOUEUR1}">Joueur 1 {{joueursConstantes.JOUEUR1_AFFICHAGE}} <span *ngIf="joueurCourant===joueursConstantes.JOUEUR1"><= Joueur qui joue</span></div>
-      <div [ngClass]="{'joueurSelectionne': joueurCourant===joueursConstantes.JOUEUR2}">Joueur 2 {{joueursConstantes.JOUEUR2_AFFICHAGE}} <span *ngIf="joueurCourant===joueursConstantes.JOUEUR2"><= Joueur qui joue</span></div>
-    </div>
+  <app-game-state></app-game-state>
 
-  <div *ngIf="jeuxTermine">
-    <div>Le jeux est terminé.</div>
-    <div *ngIf="joueurGagnant===joueursConstantes.JOUEUR1">Le gagnant est le Joueur 1</div>
-    <div *ngIf="joueurGagnant===joueursConstantes.JOUEUR2">Le gagnant est le Joueur 2</div>
-    <div *ngIf="joueurGagnant!==joueursConstantes.JOUEUR1 && joueurGagnant!==joueursConstantes.JOUEUR2">Il n'y a pas de gagnant</div>
-  </div>
-
-  <div>
-    <button (click)="nouveauJeaux()">Nouveau Jeaux</button>
+  <div class="m-2">
+    <button (click)="nouveauJeaux()" class="btn btn-primary">Nouveau Jeux</button>
   </div>
 
 </div>

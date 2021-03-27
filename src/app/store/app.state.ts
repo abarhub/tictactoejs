@@ -1,5 +1,7 @@
+import {GridModel} from '../model/grid.model';
+
 export interface AppState {
-  jeux: Array<Array<string>>;
+  jeux: GridModel;
   joueurCourant: number;
   fini: boolean;
   joueurGagnant: number;
