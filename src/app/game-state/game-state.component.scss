@@ -1,7 +1,16 @@
 
+
+$couleur-formes2: #97BC62FF;
+
 .joueurSelectionne {
   background-color: cornflowerblue;
   color: white;
+}
+
+.joueurGagnant {
+  //$couleur-formes2
+  border-color: $couleur-formes2;
+  color: $couleur-formes2;
 }
 
 .joueur {

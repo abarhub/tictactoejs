@@ -95,6 +95,18 @@ export class GridModel {
     return null;
   }
 
+  plusDeCaseDisponible(): boolean {
+    const tab: ReadonlyArray<ReadonlyArray<JoueurEnum | null>> = this.grid;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (tab[i][j] === null) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   getCopy(): Array<Array<JoueurEnum | null>> {
     const tab: Array<Array<JoueurEnum | null>> = [];
     for (let i = 0; i < 3; i++) {

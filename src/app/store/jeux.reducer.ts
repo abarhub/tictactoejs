@@ -42,7 +42,7 @@ export const jeuxReducer = createReducer(
     if (modification) {
       const nouvelleGrille = new GridModel(newStateTab);
       const joueurGagnant = nouvelleGrille.calculJoueurGagnant();
-      const fini = joueurGagnant !== null;
+      const fini = joueurGagnant !== null || nouvelleGrille.plusDeCaseDisponible();
       const newState: AppState = {
         jeux: nouvelleGrille,
         joueurCourant,

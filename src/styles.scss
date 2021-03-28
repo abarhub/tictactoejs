@@ -2,3 +2,13 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+$couleur-fond: #00203FFF;
+$couleur-formes: #ADEFD1FF;
+$couleur-formes2: #97BC62FF;
+
+body {
+  background-color: $couleur-fond;
+  color: $couleur-formes;
+}
+
