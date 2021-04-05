@@ -13,6 +13,8 @@ import {CaseModel} from './model/case.model';
 })
 export class AppComponent implements OnInit {
 
+  title = 'tictactoejs';
+
   // @ts-ignore
   jeux$: Observable<AppState>;
 
