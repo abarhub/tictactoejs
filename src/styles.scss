@@ -3,9 +3,24 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-$couleur-fond: #00203FFF;
-$couleur-formes: #ADEFD1FF;
-$couleur-formes2: #97BC62FF;
+:root {
+
+  --theme1-background-color: #00203FFF;
+  --theme1-primary-color: #ADEFD1FF;
+  --theme1-secondary-color: #97BC62FF;
+
+  --theme2-background-color: white;
+  --theme2-primary-color: green;
+  --theme2-secondary-color: red;
+
+  --background-color: var(--theme1-background-color);
+  --primary-color: var(--theme1-primary-color);
+  --secondary-color: var(--theme1-secondary-color);
+}
+
+$couleur-fond: var(--background-color);
+$couleur-formes: var(--primary-color);
+$couleur-formes2: var(--secondary-color);
 
 body {
   background-color: $couleur-fond;

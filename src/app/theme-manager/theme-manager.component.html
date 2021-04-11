@@ -1,0 +1,8 @@
+<div>
+  <form [formGroup]="themeForm">
+    <select formControlName="themeControl" [compareWith]="compareThemeModel">
+      <option [ngValue]="themeElement" *ngFor="let themeElement of themeList">{{themeElement.name}}</option>
+    </select>
+    <button (click)="changeTheme()" class="btn btn-primary m-2">Theme</button>
+  </form>
+</div>

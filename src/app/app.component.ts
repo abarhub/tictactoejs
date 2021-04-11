@@ -5,6 +5,8 @@ import {nouveauJeaux, selectionneCase} from './store/jeux.actions';
 import {Observable} from 'rxjs';
 import {AppState} from './store/app.state';
 import {CaseModel} from './model/case.model';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ThemeModel} from './model/theme.model';
 
 @Component({
   selector: 'app-root',
@@ -35,4 +37,5 @@ export class AppComponent implements OnInit {
       this.store.dispatch(selectionneCase({ligne: caseSelectionnee.ligne, colonne: caseSelectionnee.colonne}));
     }
   }
+
 }
