@@ -34,4 +34,60 @@ describe('GridService without Angular testing support', () => {
     expect(grid.get(2, 2)).toBe(null);
   });
 
+
+  it('test #calculJoueurGagnant ligne', () => {
+    const localGridService = new GridService();
+    const tab = [[JoueurEnum.JOUEUR1, JoueurEnum.JOUEUR1, JoueurEnum.JOUEUR1],
+      [JoueurEnum.JOUEUR2, JoueurEnum.JOUEUR2, null],
+      [null, null, null]];
+    const gridInitiale = new GridModel(tab);
+    const resultat = localGridService.calculJoueurGagnant(gridInitiale);
+    expect(resultat).toBeTruthy();
+    expect(resultat).toBe(JoueurEnum.JOUEUR1);
+  });
+
+  it('test #calculJoueurGagnant 2 colonne', () => {
+    const localGridService = new GridService();
+    const tab = [[null, JoueurEnum.JOUEUR2, JoueurEnum.JOUEUR1],
+      [null, JoueurEnum.JOUEUR2, JoueurEnum.JOUEUR1],
+      [null, null, JoueurEnum.JOUEUR1]];
+    const gridInitiale = new GridModel(tab);
+    const resultat = localGridService.calculJoueurGagnant(gridInitiale);
+    expect(resultat).toBeTruthy();
+    expect(resultat).toBe(JoueurEnum.JOUEUR1);
+  });
+
+  it('test #calculJoueurGagnant 3 grille vide', () => {
+    const localGridService = new GridService();
+    const tab = [[null, null, null],
+      [null, null, null],
+      [null, null, null]];
+    const gridInitiale = new GridModel(tab);
+    const resultat = localGridService.calculJoueurGagnant(gridInitiale);
+    expect(resultat).toBeNull();
+  });
+
+  it('test #calculJoueurGagnant 4 diagonale haut vers bas', () => {
+    const localGridService = new GridService();
+    const tab = [[JoueurEnum.JOUEUR1, JoueurEnum.JOUEUR2, null],
+      [null, JoueurEnum.JOUEUR1, JoueurEnum.JOUEUR2],
+      [null, null, JoueurEnum.JOUEUR1]];
+    const gridInitiale = new GridModel(tab);
+    const resultat = localGridService.calculJoueurGagnant(gridInitiale);
+    expect(resultat).toBeTruthy();
+    expect(resultat).toBe(JoueurEnum.JOUEUR1);
+  });
+
+  it('test #calculJoueurGagnant 4 diagonale bas vers haut', () => {
+    const localGridService = new GridService();
+    const tab = [[null, JoueurEnum.JOUEUR1, JoueurEnum.JOUEUR1],
+      [null, JoueurEnum.JOUEUR1, JoueurEnum.JOUEUR2],
+      [JoueurEnum.JOUEUR1, null, null]];
+    const gridInitiale = new GridModel(tab);
+    const resultat = localGridService.calculJoueurGagnant(gridInitiale);
+    expect(resultat).toBeTruthy();
+    expect(resultat).toBe(JoueurEnum.JOUEUR1);
+  });
+
+
 });
