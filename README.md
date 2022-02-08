@@ -1,6 +1,6 @@
 # Tic tac toe
 
-Ce projet est réalisé avec [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
+Ce projet est réalisé avec [Angular CLI](https://github.com/angular/angular-cli) version 13.2.1.
 
 C'est un jeux Tic Tac Toe (morpion).
 Le site est [ici](https://abarhub.github.io/tictactoejs/).
