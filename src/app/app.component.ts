@@ -5,8 +5,6 @@ import {nouveauJeaux, selectionneCase} from './store/jeux.actions';
 import {Observable} from 'rxjs';
 import {AppState} from './store/app.state';
 import {CaseModel} from './model/case.model';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {ThemeModel} from './model/theme.model';
 
 @Component({
   selector: 'app-root',

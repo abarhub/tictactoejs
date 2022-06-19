@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GridComponent } from './grid.component';
+import {GridComponent} from './grid.component';
 import {Store, StoreModule} from '@ngrx/store';
 
 describe('GridComponent', () => {
@@ -10,10 +10,10 @@ describe('GridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GridComponent ],
+      declarations: [GridComponent],
       imports: [StoreModule.forRoot({})]
     })
-    .compileComponents();
+      .compileComponents();
     store = TestBed.inject(Store);
   });
 

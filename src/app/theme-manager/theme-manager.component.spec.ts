@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ThemeManagerComponent} from './theme-manager.component';
 import {Store, StoreModule} from '@ngrx/store';
-import {FormsModule, ReactiveFormsModule, UntypedFormBuilder} from '@angular/forms';
+import {ReactiveFormsModule, UntypedFormBuilder} from '@angular/forms';
 
 describe('ThemeManagerComponent', () => {
   let component: ThemeManagerComponent;

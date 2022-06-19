@@ -1,7 +1,12 @@
-
 <div class="m-2">
-  <div [ngClass]="{'joueurSelectionne': joueurCourant===joueurEnum.JOUEUR1&&!jeuxTermine, 'joueurGagnant': joueurGagnant===joueurEnum.JOUEUR1&&jeuxTermine}" class="joueur m-2 p-2 border rounded">Joueur 1 ({{joueursConstantes.JOUEUR1_AFFICHAGE}})</div>
-  <div [ngClass]="{'joueurSelectionne': joueurCourant===joueurEnum.JOUEUR2&&!jeuxTermine, 'joueurGagnant': joueurGagnant===joueurEnum.JOUEUR2&&jeuxTermine}" class="joueur m-2 p-2 border rounded">Joueur 2 ({{joueursConstantes.JOUEUR2_AFFICHAGE}})</div>
+  <div
+    [ngClass]="{'joueurSelectionne': joueurCourant===joueurEnum.JOUEUR1&&!jeuxTermine, 'joueurGagnant': joueurGagnant===joueurEnum.JOUEUR1&&jeuxTermine}"
+    class="joueur m-2 p-2 border rounded">Joueur 1 ({{joueursConstantes.JOUEUR1_AFFICHAGE}})
+  </div>
+  <div
+    [ngClass]="{'joueurSelectionne': joueurCourant===joueurEnum.JOUEUR2&&!jeuxTermine, 'joueurGagnant': joueurGagnant===joueurEnum.JOUEUR2&&jeuxTermine}"
+    class="joueur m-2 p-2 border rounded">Joueur 2 ({{joueursConstantes.JOUEUR2_AFFICHAGE}})
+  </div>
 </div>
 
 <div *ngIf="jeuxTermine" class="border border-success rounded mp-2 m-3">

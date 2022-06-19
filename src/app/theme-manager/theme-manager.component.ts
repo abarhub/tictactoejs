@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 import {ThemeModel} from '../model/theme.model';
-import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-theme-manager',
