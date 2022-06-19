@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 import {ThemeModel} from '../model/theme.model';
 import {Store} from '@ngrx/store';
 
@@ -10,7 +10,7 @@ import {Store} from '@ngrx/store';
 })
 export class ThemeManagerComponent implements OnInit {
 
-  themeForm: FormGroup;
+  themeForm: UntypedFormGroup;
   themeList: ThemeModel[] = [{
     id: 1,
     name: 'Sombre'
@@ -24,7 +24,7 @@ export class ThemeManagerComponent implements OnInit {
       name: 'Clair 2'
     }];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.themeForm = this.fb.group({
       themeControl: [this.themeList[0]]
     });
