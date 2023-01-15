@@ -13,7 +13,7 @@ ng update --force @angular/core @angular/cli
 ```
 
 * Mise à jour de ng-bootstrap
-* La documentation pour la mise à jour est [ici](https://ng-bootstrap.github.io/#/getting-started)
+La documentation pour la mise à jour est [ici](https://ng-bootstrap.github.io/#/getting-started)
 ```shell
 ng update @ng-bootstrap/ng-bootstrap@XXX
 ```
@@ -21,3 +21,12 @@ Ensuite il faut monter la version de bootstrap et popper en faisant attention à
 ```shell
 npm i bootstrap@XXX @popperjs/core@XXX
 ```
+
+* Mise à jour de ngrx
+
+La documentation pour la mise à jour est [ici](https://ngrx.io/guide/migration/v15)
+```shell
+ng update @ngrx/store@XXX
+```
+
+
