@@ -12,7 +12,12 @@ npm install
 ng update --force @angular/core @angular/cli
 ```
 
-* Mise à jour de material degin
+* Mise à jour de ng-bootstrap
+* La documentation pour la mise à jour est [ici](https://ng-bootstrap.github.io/#/getting-started)
 ```shell
-ng update @angular/material
+ng update @ng-bootstrap/ng-bootstrap@XXX
+```
+Ensuite il faut monter la version de bootstrap et popper en faisant attention à mettre les [versions compatibles avec ngbootstrap](https://ng-bootstrap.github.io/#/getting-started) :
+```shell
+npm i bootstrap@XXX @popperjs/core@XXX
 ```
