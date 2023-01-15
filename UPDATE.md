@@ -6,7 +6,7 @@ La documentation pour la monté de version d'angular est [ici](https://update.an
 ```shell
 ng update @angular/core@XXX @angular/cli@XXX
 ```
-Si ça ne marche pas, il faut faire :
+Ca devrait fonctionner. Si ça ne marche pas, il faut faire :
 ```shell
 npm install
 ng update --force @angular/core @angular/cli
