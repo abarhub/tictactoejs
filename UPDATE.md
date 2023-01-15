@@ -29,4 +29,15 @@ La documentation pour la mise à jour est [ici](https://ngrx.io/guide/migration/
 ng update @ngrx/store@XXX
 ```
 
+* Analyse des problèmes de sécurité
+Pour analyser les problèmes de sécurité, il faut executer :
+```shell
+npm audit
+```
+
+Ensuite pour les corriger, il faut executer :
+```shell
+npm audit fix
+```shell
+
 
