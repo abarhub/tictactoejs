@@ -2,6 +2,9 @@ import {TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
 import {Store, StoreModule} from '@ngrx/store';
+import {GridComponent} from './grid/grid.component';
+import {GameStateComponent} from './game-state/game-state.component';
+import {ThemeManagerComponent} from './theme-manager/theme-manager.component';
 
 describe('AppComponent', () => {
   let store: Store;
@@ -13,7 +16,10 @@ describe('AppComponent', () => {
         StoreModule.forRoot({})
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        GridComponent,
+        GameStateComponent,
+        ThemeManagerComponent
       ],
     }).compileComponents();
     store = TestBed.inject(Store);
