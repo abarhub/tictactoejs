@@ -74,18 +74,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "tictactoejs:build"
+            "buildTarget": "tictactoejs:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "tictactoejs:build:production"
+              "buildTarget": "tictactoejs:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tictactoejs:build"
+            "buildTarget": "tictactoejs:build"
           }
         },
         "test": {
