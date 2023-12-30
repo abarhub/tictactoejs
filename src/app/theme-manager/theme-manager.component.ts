@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {ThemeModel} from '../model/theme.model';
 
 @Component({
@@ -9,7 +9,6 @@ import {ThemeModel} from '../model/theme.model';
 })
 export class ThemeManagerComponent implements OnInit {
 
-  themeForm: UntypedFormGroup;
   themeList: ThemeModel[] = [{
     id: 1,
     name: 'Sombre'
@@ -22,11 +21,12 @@ export class ThemeManagerComponent implements OnInit {
       id: 3,
       name: 'Clair 2'
     }];
+  themeForm = this.fb.group({
+    themeControl: [this.themeList[0]]
+  });
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.themeForm = this.fb.group({
-      themeControl: [this.themeList[0]]
-    });
+  constructor(private fb: FormBuilder) {
+
   }
 
   ngOnInit(): void {
@@ -36,8 +36,7 @@ export class ThemeManagerComponent implements OnInit {
   changeTheme(): void {
     const themeSelected = this.themeForm.get('themeControl')?.value;
     if (themeSelected && this.isThemeModel(themeSelected)) {
-      const theme2: ThemeModel = themeSelected;
-      const id = theme2.id;
+      const id = themeSelected.id;
       if (id) {
         if (id >= 1 && id <= 3) {
           if (id === 1) {

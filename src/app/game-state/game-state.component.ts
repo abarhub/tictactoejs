@@ -30,21 +30,23 @@ export class GameStateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.jeux$.subscribe(data => {
-      console.log('ngOnInit jeux GameStateComponent', data, data.jeux);
-      if (data) {
-        if (data.jeux) {
-          const tmp = (data.jeux as unknown) as AppState;
-          console.log('ngOnInit jeux GameStateComponent', tmp);
-          if (tmp) {
-            this.joueurCourant = tmp.joueurCourant;
-            this.jeuxTermine = tmp.fini;
-            this.joueurGagnant = tmp.joueurGagnant;
+    this.jeux$.subscribe({
+      next: data => {
+        console.debug('ngOnInit jeux GameStateComponent', data, data.jeux);
+        if (data) {
+          if (data.jeux) {
+            const tmp = (data.jeux as unknown) as AppState;
+            console.debug('ngOnInit jeux GameStateComponent', tmp);
+            if (tmp) {
+              this.joueurCourant = tmp.joueurCourant;
+              this.jeuxTermine = tmp.fini;
+              this.joueurGagnant = tmp.joueurGagnant;
+            }
           }
         }
+      }, error: error => {
+        console.error('Erreur', error);
       }
-    }, error => {
-      console.error('Erreur', error);
     });
   }
 

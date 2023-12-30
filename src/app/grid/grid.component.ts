@@ -30,23 +30,25 @@ export class GridComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.jeux$.subscribe(data => {
-      console.log('ngOnInit jeux GridComponent', data, data.jeux);
-      if (data) {
-        if (data.jeux) {
-          const tmp = (data.jeux as unknown) as AppState;
-          console.log('ngOnInit jeux GridComponent', tmp);
-          if (tmp && tmp.jeux) {
-            let tab: GridModel | null;
-            tab = this.gridService.copieGrille(tmp.jeux);
-            if (tab) {
-              this.tab = tab;
+    this.jeux$.subscribe({
+      next: data => {
+        console.debug('ngOnInit jeux GridComponent', data, data.jeux);
+        if (data) {
+          if (data.jeux) {
+            const tmp = (data.jeux as unknown) as AppState;
+            console.debug('ngOnInit jeux GridComponent', tmp);
+            if (tmp && tmp.jeux) {
+              let tab: GridModel | null;
+              tab = this.gridService.copieGrille(tmp.jeux);
+              if (tab) {
+                this.tab = tab;
+              }
             }
           }
         }
+      }, error: error => {
+        console.error('Erreur', error);
       }
-    }, error => {
-      console.error('Erreur', error);
     });
   }
 
