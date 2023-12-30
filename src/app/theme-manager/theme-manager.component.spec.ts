@@ -2,24 +2,25 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ThemeManagerComponent} from './theme-manager.component';
 import {Store, StoreModule} from '@ngrx/store';
-import {FormsModule, ReactiveFormsModule, UntypedFormBuilder} from '@angular/forms';
+import {FormBuilder, FormsModule, ReactiveFormsModule, UntypedFormBuilder} from '@angular/forms';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('ThemeManagerComponent', () => {
   let component: ThemeManagerComponent;
   let fixture: ComponentFixture<ThemeManagerComponent>;
-  let untypedFormBuilder: UntypedFormBuilder;
+  let untypedFormBuilder: FormBuilder;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ThemeManagerComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      providers: [ FormBuilder ],
       imports: [StoreModule.forRoot({}),
         ReactiveFormsModule,
         FormsModule]
     })
       .compileComponents();
-    untypedFormBuilder = TestBed.inject(UntypedFormBuilder);
+    untypedFormBuilder = TestBed.inject(FormBuilder);
   });
 
   beforeEach(() => {
