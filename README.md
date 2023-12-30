@@ -2,7 +2,7 @@
 
 [![Tests CI](https://github.com/abarhub/tictactoejs/actions/workflows/npm_action.yml/badge.svg?branch=master)](https://github.com/abarhub/tictactoejs/actions/workflows/npm_action.yml)
 
-Ce projet est réalisé avec [Angular CLI](https://github.com/angular/angular-cli) version 15.1.0.
+Ce projet est réalisé avec [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
 
 C'est un jeux Tic Tac Toe (morpion).
 Le site est [ici](https://abarhub.github.io/tictactoejs/).
