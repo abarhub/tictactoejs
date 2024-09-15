@@ -51,7 +51,7 @@
                 }
               ],
               "outputPath": {
-                "base": "docs"
+                "base": "dist/tictactoejs"
               },
               "optimization": true,
               "outputHashing": "all",
