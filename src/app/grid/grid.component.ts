@@ -10,9 +10,10 @@ import {JoueurEnum} from '../model/joueur.enum';
 import {JoueursConstantes} from '../constantes/joueurs.constantes';
 
 @Component({
-  selector: 'app-grid',
-  templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.scss']
+    selector: 'app-grid',
+    templateUrl: './grid.component.html',
+    styleUrls: ['./grid.component.scss'],
+    standalone: false
 })
 export class GridComponent implements OnInit {
 

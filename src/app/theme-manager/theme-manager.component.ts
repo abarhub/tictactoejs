@@ -3,9 +3,10 @@ import {FormBuilder} from '@angular/forms';
 import {ThemeModel} from '../model/theme.model';
 
 @Component({
-  selector: 'app-theme-manager',
-  templateUrl: './theme-manager.component.html',
-  styleUrls: ['./theme-manager.component.scss']
+    selector: 'app-theme-manager',
+    templateUrl: './theme-manager.component.html',
+    styleUrls: ['./theme-manager.component.scss'],
+    standalone: false
 })
 export class ThemeManagerComponent implements OnInit {
 
