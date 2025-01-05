@@ -7,9 +7,10 @@ import {AppState} from '../store/app.state';
 import {JoueurEnum} from '../model/joueur.enum';
 
 @Component({
-  selector: 'app-game-state',
-  templateUrl: './game-state.component.html',
-  styleUrls: ['./game-state.component.scss']
+    selector: 'app-game-state',
+    templateUrl: './game-state.component.html',
+    styleUrls: ['./game-state.component.scss'],
+    standalone: false
 })
 export class GameStateComponent implements OnInit {
 
