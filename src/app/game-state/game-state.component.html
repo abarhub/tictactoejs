@@ -9,10 +9,18 @@
   </div>
 </div>
 
-<div *ngIf="jeuxTermine" class="border border-success rounded mp-2 m-3">
-  <div>Le jeux est terminé.</div>
-  <div *ngIf="joueurGagnant===joueurEnum.JOUEUR1">Le gagnant est le Joueur 1</div>
-  <div *ngIf="joueurGagnant===joueurEnum.JOUEUR2">Le gagnant est le Joueur 2</div>
-  <div *ngIf="joueurGagnant!==joueurEnum.JOUEUR1 && joueurGagnant!==joueurEnum.JOUEUR2">Il n'y a pas de gagnant</div>
-</div>
+@if (jeuxTermine) {
+  <div class="border border-success rounded mp-2 m-3">
+    <div>Le jeux est terminé.</div>
+    @if (joueurGagnant===joueurEnum.JOUEUR1) {
+      <div>Le gagnant est le Joueur 1</div>
+    }
+    @if (joueurGagnant===joueurEnum.JOUEUR2) {
+      <div>Le gagnant est le Joueur 2</div>
+    }
+    @if (joueurGagnant!==joueurEnum.JOUEUR1 && joueurGagnant!==joueurEnum.JOUEUR2) {
+      <div>Il n'y a pas de gagnant</div>
+    }
+  </div>
+}
 
