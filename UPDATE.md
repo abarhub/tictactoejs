@@ -29,12 +29,6 @@ La documentation pour la mise à jour est [ici](https://ngrx.io/guide/migration/
 ng update @ngrx/store@XXX
 ```
 
-* mettre à jour jasmin et karma 
-```shell
-npm install -D jasmine-core@latest
-npm install -D karma@latest karma-jasmine@latest karma-jasmine-html-reporter@latest
-```
-
 * Analyse des problèmes de sécurité
 Pour analyser les problèmes de sécurité, il faut executer :
 ```shell
