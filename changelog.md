@@ -1,3 +1,6 @@
+# version 1.9.0 (28/06/2026)
+* passage à angular 21.2.17
+
 # version 1.8.0 (14/08/2025)
 * passage à angular 20.1.7
 
