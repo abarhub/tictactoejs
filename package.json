@@ -42,7 +42,6 @@
     "@angular/compiler-cli": "^21.2.17",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
-    "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.3.2",
@@ -52,7 +51,6 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "sonarqube-scanner": "^4.3.5",
     "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
     "typescript": "~5.9.3"
   }
 }
