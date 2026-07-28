@@ -5,35 +5,32 @@ import {nouveauJeaux, selectionneCase} from './store/jeux.actions';
 import {Observable} from 'rxjs';
 import {AppState} from './store/app.state';
 import {CaseModel} from './model/case.model';
+import {GameStoreService} from './services/game-store.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: false
 })
 export class AppComponent implements OnInit {
 
   title = 'tictactoejs';
 
-  // @ts-ignore
-  jeux$: Observable<AppState>;
+  constructor(private gameStore: GameStoreService) {
 
-  constructor(private store: Store) {
-    // @ts-ignore
-    this.jeux$ = this.store.pipe(select(selectJeux));
   }
 
   ngOnInit(): void {
   }
 
   nouveauJeux(): void {
-    this.store.dispatch(nouveauJeaux());
+    this.gameStore.nouveauJeux();
   }
 
   selectionCase(caseSelectionnee: CaseModel): void {
     if (caseSelectionnee) {
-      this.store.dispatch(selectionneCase({ligne: caseSelectionnee.ligne, colonne: caseSelectionnee.colonne}));
+      this.gameStore.caseSelectionnee(caseSelectionnee);
     }
   }
 

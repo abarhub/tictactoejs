@@ -1,17 +1,17 @@
 <table>
   <tr>
-    <td (click)="selection(1,1)" class="border">{{get(0, 0)}}</td>
-    <td (click)="selection(1,2)" class="border">{{get(0, 1)}}</td>
-    <td (click)="selection(1,3)" class="border">{{get(0, 2)}}</td>
+    <td (click)="selection(1,1)" class="border">{{ tab?.champ00()===JoueurEnum.JOUEUR1?JoueursConstantes.JOUEUR1_AFFICHAGE:(tab?.champ00()===JoueurEnum.JOUEUR2?JoueursConstantes.JOUEUR2_AFFICHAGE:'') }}</td>
+    <td (click)="selection(1,2)" class="border">{{ tab?.champ01()===JoueurEnum.JOUEUR1?JoueursConstantes.JOUEUR1_AFFICHAGE:(tab?.champ01()===JoueurEnum.JOUEUR2?JoueursConstantes.JOUEUR2_AFFICHAGE:'') }}</td>
+    <td (click)="selection(1,3)" class="border">{{ tab?.champ02()===JoueurEnum.JOUEUR1?JoueursConstantes.JOUEUR1_AFFICHAGE:(tab?.champ02()===JoueurEnum.JOUEUR2?JoueursConstantes.JOUEUR2_AFFICHAGE:'') }}</td>
   </tr>
   <tr>
-    <td (click)="selection(2,1)" class="border">{{get(1, 0)}}</td>
-    <td (click)="selection(2,2)" class="border">{{get(1, 1)}}</td>
-    <td (click)="selection(2,3)" class="border">{{get(1, 2)}}</td>
+    <td (click)="selection(2,1)" class="border">{{ tab?.champ10()===JoueurEnum.JOUEUR1?JoueursConstantes.JOUEUR1_AFFICHAGE:(tab?.champ10()===JoueurEnum.JOUEUR2?JoueursConstantes.JOUEUR2_AFFICHAGE:'') }}</td>
+    <td (click)="selection(2,2)" class="border">{{ tab?.champ11()===JoueurEnum.JOUEUR1?JoueursConstantes.JOUEUR1_AFFICHAGE:(tab?.champ11()===JoueurEnum.JOUEUR2?JoueursConstantes.JOUEUR2_AFFICHAGE:'') }}</td>
+    <td (click)="selection(2,3)" class="border">{{ tab?.champ12()===JoueurEnum.JOUEUR1?JoueursConstantes.JOUEUR1_AFFICHAGE:(tab?.champ12()===JoueurEnum.JOUEUR2?JoueursConstantes.JOUEUR2_AFFICHAGE:'') }}</td>
   </tr>
   <tr>
-    <td (click)="selection(3,1)" class="border">{{get(2, 0)}}</td>
-    <td (click)="selection(3,2)" class="border">{{get(2, 1)}}</td>
-    <td (click)="selection(3,3)" class="border">{{get(2, 2)}}</td>
+    <td (click)="selection(3,1)" class="border">{{ tab?.champ20()===JoueurEnum.JOUEUR1?JoueursConstantes.JOUEUR1_AFFICHAGE:(tab?.champ20()===JoueurEnum.JOUEUR2?JoueursConstantes.JOUEUR2_AFFICHAGE:'') }}</td>
+    <td (click)="selection(3,2)" class="border">{{ tab?.champ21()===JoueurEnum.JOUEUR1?JoueursConstantes.JOUEUR1_AFFICHAGE:(tab?.champ21()===JoueurEnum.JOUEUR2?JoueursConstantes.JOUEUR2_AFFICHAGE:'') }}</td>
+    <td (click)="selection(3,3)" class="border">{{ tab?.champ22()===JoueurEnum.JOUEUR1?JoueursConstantes.JOUEUR1_AFFICHAGE:(tab?.champ22()===JoueurEnum.JOUEUR2?JoueursConstantes.JOUEUR2_AFFICHAGE:'') }}</td>
   </tr>
 </table>

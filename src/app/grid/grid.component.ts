@@ -1,56 +1,29 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {selectJeux} from '../store/jeux.selectors';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {CaseModel} from '../model/case.model';
-import {AppState} from '../store/app.state';
-import {Observable} from 'rxjs';
 import {GridService} from '../services/grid.service';
 import {GridModel} from '../model/grid.model';
 import {JoueurEnum} from '../model/joueur.enum';
 import {JoueursConstantes} from '../constantes/joueurs.constantes';
+import {GameStoreService} from '../services/game-store.service';
 
 @Component({
-    selector: 'app-grid',
-    templateUrl: './grid.component.html',
-    styleUrls: ['./grid.component.scss'],
-    standalone: false
+  selector: 'app-grid',
+  templateUrl: './grid.component.html',
+  styleUrls: ['./grid.component.scss'],
+  standalone: false
 })
-export class GridComponent implements OnInit {
+export class GridComponent {
 
-  tab: GridModel | null = null;
+  public tab: GridModel | null = null;
 
-  // @ts-ignore
-  jeux$: Observable<AppState>;
+  protected readonly JoueurEnum = JoueurEnum;
+  protected readonly JoueursConstantes = JoueursConstantes;
 
   @Output()
   selectionCase: EventEmitter<CaseModel> = new EventEmitter<CaseModel>();
 
-  constructor(private store: Store, private gridService: GridService) {
-    // @ts-ignore
-    this.jeux$ = this.store.pipe(select(selectJeux));
-  }
-
-  ngOnInit(): void {
-    this.jeux$.subscribe({
-      next: data => {
-        console.debug('ngOnInit jeux GridComponent', data, data.jeux);
-        if (data) {
-          if (data.jeux) {
-            const tmp = (data.jeux as unknown) as AppState;
-            console.debug('ngOnInit jeux GridComponent', tmp);
-            if (tmp && tmp.jeux) {
-              let tab: GridModel | null;
-              tab = this.gridService.copieGrille(tmp.jeux);
-              if (tab) {
-                this.tab = tab;
-              }
-            }
-          }
-        }
-      }, error: error => {
-        console.error('Erreur', error);
-      }
-    });
+  constructor(private gameStoreService: GameStoreService) {
+    this.tab = gameStoreService.gamestate.jeux;
   }
 
   selection(ligne: number, colonne: number): void {

@@ -1,18 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, effect, signal} from '@angular/core';
 import {JoueursConstantes} from '../constantes/joueurs.constantes';
-import {select, Store} from '@ngrx/store';
-import {selectJeux} from '../store/jeux.selectors';
-import {Observable} from 'rxjs';
-import {AppState} from '../store/app.state';
 import {JoueurEnum} from '../model/joueur.enum';
+import {GameStoreService} from '../services/game-store.service';
+import {GameCurrentState} from '../model/game-current-state';
 
 @Component({
-    selector: 'app-game-state',
-    templateUrl: './game-state.component.html',
-    styleUrls: ['./game-state.component.scss'],
-    standalone: false
+  selector: 'app-game-state',
+  templateUrl: './game-state.component.html',
+  styleUrls: ['./game-state.component.scss'],
+  standalone: false
 })
-export class GameStateComponent implements OnInit {
+export class GameStateComponent {
 
   joueurCourant: JoueurEnum = JoueurEnum.JOUEUR1;
   jeuxTermine = false;
@@ -22,31 +20,18 @@ export class GameStateComponent implements OnInit {
 
   public joueursConstantes: typeof JoueursConstantes = JoueursConstantes;
 
-  // @ts-ignore
-  jeux$: Observable<AppState>;
+  private modification = signal<GameCurrentState | null>(null);
 
-  constructor(private store: Store) {
-    // @ts-ignore
-    this.jeux$ = this.store.pipe(select(selectJeux));
-  }
+  constructor(private gameStoreService: GameStoreService) {
+    this.modification = gameStoreService.modification;
 
-  ngOnInit(): void {
-    this.jeux$.subscribe({
-      next: data => {
-        console.debug('ngOnInit jeux GameStateComponent', data, data.jeux);
-        if (data) {
-          if (data.jeux) {
-            const tmp = (data.jeux as unknown) as AppState;
-            console.debug('ngOnInit jeux GameStateComponent', tmp);
-            if (tmp) {
-              this.joueurCourant = tmp.joueurCourant;
-              this.jeuxTermine = tmp.fini;
-              this.joueurGagnant = tmp.joueurGagnant;
-            }
-          }
-        }
-      }, error: error => {
-        console.error('Erreur', error);
+    effect(() => {
+      let state = this.modification();
+      console.log('etat:', state);
+      if (state) {
+        this.joueurCourant = state.joueurCourant;
+        this.jeuxTermine = state.fini;
+        this.joueurGagnant = state.joueurGagnant;
       }
     });
   }

@@ -1,25 +1,64 @@
 import {JoueurEnum} from './joueur.enum';
 import {GridService} from '../services/grid.service';
+import {signal, WritableSignal} from '@angular/core';
 
 export class GridModel {
-  private grid: ReadonlyArray<ReadonlyArray<JoueurEnum | null>>;
+  private readonly _champ00 = signal<JoueurEnum | null>(null);
+  private readonly _champ01 = signal<JoueurEnum | null>(null);
+  private readonly _champ02 = signal<JoueurEnum | null>(null);
+  private readonly _champ10 = signal<JoueurEnum | null>(null);
+  private readonly _champ11 = signal<JoueurEnum | null>(null);
+  private readonly _champ12 = signal<JoueurEnum | null>(null);
+  private readonly _champ20 = signal<JoueurEnum | null>(null);
+  private readonly _champ21 = signal<JoueurEnum | null>(null);
+  private readonly _champ22 = signal<JoueurEnum | null>(null);
   private gridService: GridService = new GridService();
 
+  public readonly champ00 = this._champ00.asReadonly();
+  public readonly champ01 = this._champ01.asReadonly();
+  public readonly champ02 = this._champ02.asReadonly();
+  public readonly champ10 = this._champ10.asReadonly();
+  public readonly champ11 = this._champ11.asReadonly();
+  public readonly champ12 = this._champ12.asReadonly();
+  public readonly champ20 = this._champ20.asReadonly();
+  public readonly champ21 = this._champ21.asReadonly();
+  public readonly champ22 = this._champ22.asReadonly();
+  private readonly grid2: ReadonlyArray<ReadonlyArray<WritableSignal<JoueurEnum | null>>>;
+
   constructor(grid: Array<Array<JoueurEnum | null>>) {
-    const tab3: Array<ReadonlyArray<JoueurEnum | null>> = [];
+    this.grid2 = [[this._champ00, this._champ01, this._champ02],
+      [this._champ10, this._champ11, this._champ12],
+      [this._champ20, this._champ21, this._champ22]];
+
     for (let i = 0; i < 3; i++) {
-      const tab: Array<JoueurEnum | null> = [];
       for (let j = 0; j < 3; j++) {
-        tab.push(grid[i][j]);
+        this.grid2[i][j].set(grid[i][j]);
       }
-      const tab2: ReadonlyArray<JoueurEnum | null> = tab;
-      tab3.push(tab2);
     }
-    this.grid = tab3;
   }
 
   get(ligne: number, colonne: number): JoueurEnum | null {
-    return this.grid[ligne][colonne];
+    if (ligne == 0 && colonne === 0) {
+      return this.champ00();
+    } else if (ligne == 0 && colonne === 1) {
+      return this.champ01();
+    } else if (ligne == 0 && colonne === 2) {
+      return this.champ02();
+    } else if (ligne == 1 && colonne === 0) {
+      return this.champ10();
+    } else if (ligne == 1 && colonne === 1) {
+      return this.champ11();
+    } else if (ligne == 1 && colonne === 2) {
+      return this.champ12();
+    } else if (ligne == 2 && colonne === 0) {
+      return this.champ20();
+    } else if (ligne == 2 && colonne === 1) {
+      return this.champ21();
+    } else if (ligne == 2 && colonne === 2) {
+      return this.champ22();
+    } else {
+      return null;
+    }
   }
 
   calculJoueurGagnant(): JoueurEnum | null {
@@ -27,10 +66,10 @@ export class GridModel {
   }
 
   plusDeCaseDisponible(): boolean {
-    const tab: ReadonlyArray<ReadonlyArray<JoueurEnum | null>> = this.grid;
+    const tab: ReadonlyArray<ReadonlyArray<WritableSignal<JoueurEnum | null>>> = this.grid2;
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
-        if (tab[i][j] === null) {
+        if (tab[i][j]() === null) {
           return false;
         }
       }
@@ -44,10 +83,32 @@ export class GridModel {
       const tab2: Array<JoueurEnum | null> = [];
       tab.push(tab2);
       for (let j = 0; j < 3; j++) {
-        tab2.push(this.grid[i][j]);
+        tab2.push(this.grid2[i][j]());
       }
     }
     return tab;
+  }
+
+  selectionCase(ligne: number, colonne: number, joueurCourant: JoueurEnum): boolean {
+    if (ligne >= 0 && ligne <= 2 && colonne >= 0 && colonne <= 2 &&
+      ligne < this.grid2.length && colonne < this.grid2[ligne].length) {
+      if (this.grid2[ligne][colonne]() == null) {
+        this.grid2[ligne][colonne].set(joueurCourant);
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  vide() {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        this.grid2[i][j].set(null);
+      }
+    }
   }
 
 }
