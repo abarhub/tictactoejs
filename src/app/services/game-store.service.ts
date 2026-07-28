@@ -1,4 +1,3 @@
-import {GridModel} from '../model/grid.model';
 import {GridService} from './grid.service';
 import {Injectable, signal} from '@angular/core';
 import {CaseModel} from '../model/case.model';
@@ -26,14 +25,11 @@ export class GameStoreService {
   }
 
   public nouveauJeux(): void {
-    console.log('NouveauJeux');
-    // this.gamestate.jeux = this.gridService.creerGrilleVide();
     this.gamestate.jeux.vide();
     this.gamestate.joueurCourant = JoueurEnum.JOUEUR1;
     this.gamestate.joueurGagnant = null;
     this.gamestate.fini = false;
     this.modification.set({...this.gamestate});
-    console.log('NouveauJeux ok', this.gamestate);
   }
 
   public caseSelectionnee(caseSelectionnee: CaseModel): void {

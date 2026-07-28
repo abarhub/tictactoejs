@@ -1,9 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {selectJeux} from './store/jeux.selectors';
-import {nouveauJeaux, selectionneCase} from './store/jeux.actions';
-import {Observable} from 'rxjs';
-import {AppState} from './store/app.state';
 import {CaseModel} from './model/case.model';
 import {GameStoreService} from './services/game-store.service';
 

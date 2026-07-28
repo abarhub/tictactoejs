@@ -27,7 +27,6 @@ export class GameStateComponent {
 
     effect(() => {
       let state = this.modification();
-      console.log('etat:', state);
       if (state) {
         this.joueurCourant = state.joueurCourant;
         this.jeuxTermine = state.fini;
