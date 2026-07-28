@@ -1,25 +1,21 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {GameStateComponent} from './game-state.component';
-import {Store, StoreModule} from '@ngrx/store';
 import {JoueurEnum} from '../model/joueur.enum';
-import {jeuxReducer} from '../store/jeux.reducer';
-import {nouveauJeaux} from '../store/jeux.actions';
+import {GameStoreService} from '../services/game-store.service';
 
 describe('GameStateComponent', () => {
   let component: GameStateComponent;
   let fixture: ComponentFixture<GameStateComponent>;
-  let store: Store;
+  let gameStoreService: GameStoreService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GameStateComponent],
-      imports: [
-        StoreModule.forRoot({jeux: jeuxReducer}, {})
-      ]
+      imports: [      ]
     })
       .compileComponents();
-    store = TestBed.inject(Store);
+    gameStoreService = TestBed.inject(GameStoreService);
   });
 
   beforeEach(() => {
@@ -33,7 +29,7 @@ describe('GameStateComponent', () => {
   });
 
   it('Nouveau Jeux', () => {
-    store.dispatch(nouveauJeaux());
+    gameStoreService.nouveauJeux();
 
     expect(component.joueurCourant).toEqual(JoueurEnum.JOUEUR1);
     expect(component.jeuxTermine).toBeFalse();
