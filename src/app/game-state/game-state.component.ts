@@ -1,4 +1,4 @@
-import {Component, effect, signal} from '@angular/core';
+import {Component, effect, signal, ChangeDetectionStrategy} from '@angular/core';
 import {JoueursConstantes} from '../constantes/joueurs.constantes';
 import {JoueurEnum} from '../model/joueur.enum';
 import {GameStoreService} from '../services/game-store.service';
@@ -8,6 +8,7 @@ import {GameCurrentState} from '../model/game-current-state';
   selector: 'app-game-state',
   templateUrl: './game-state.component.html',
   styleUrls: ['./game-state.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class GameStateComponent {

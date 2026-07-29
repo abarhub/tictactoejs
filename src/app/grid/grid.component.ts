@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Output, ChangeDetectionStrategy} from '@angular/core';
 import {CaseModel} from '../model/case.model';
 import {GridService} from '../services/grid.service';
 import {GridModel} from '../model/grid.model';
@@ -10,6 +10,7 @@ import {GameStoreService} from '../services/game-store.service';
   selector: 'app-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class GridComponent {

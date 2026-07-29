@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {ThemeModel} from '../model/theme.model';
 
@@ -6,6 +6,7 @@ import {ThemeModel} from '../model/theme.model';
     selector: 'app-theme-manager',
     templateUrl: './theme-manager.component.html',
     styleUrls: ['./theme-manager.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ThemeManagerComponent implements OnInit {
