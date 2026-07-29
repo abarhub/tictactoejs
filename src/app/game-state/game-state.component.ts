@@ -13,17 +13,17 @@ import {GameCurrentState} from '../model/game-current-state';
 })
 export class GameStateComponent {
 
-  joueurCourant: JoueurEnum = JoueurEnum.JOUEUR1;
-  jeuxTermine = false;
-  joueurGagnant: JoueurEnum | null = null;
+  protected joueurCourant: JoueurEnum = JoueurEnum.JOUEUR1;
+  protected jeuxTermine = false;
+  protected joueurGagnant: JoueurEnum | null = null;
 
-  public joueurEnum: typeof JoueurEnum = JoueurEnum;
+  protected joueurEnum: typeof JoueurEnum = JoueurEnum;
 
-  public joueursConstantes: typeof JoueursConstantes = JoueursConstantes;
+  protected joueursConstantes: typeof JoueursConstantes = JoueursConstantes;
 
-  private modification = signal<GameCurrentState | null>(null);
+  private readonly modification = signal<GameCurrentState | null>(null);
 
-  constructor(private gameStoreService: GameStoreService) {
+  constructor(private readonly gameStoreService: GameStoreService) {
     this.modification = gameStoreService.modification;
 
     effect(() => {

@@ -15,7 +15,7 @@ import {GameStoreService} from '../services/game-store.service';
 })
 export class GridComponent {
 
-  public tab: GridModel | null = null;
+  protected tab: GridModel | null = null;
 
   protected readonly JoueurEnum = JoueurEnum;
   protected readonly JoueursConstantes = JoueursConstantes;
@@ -23,7 +23,7 @@ export class GridComponent {
   @Output()
   selectionCase: EventEmitter<CaseModel> = new EventEmitter<CaseModel>();
 
-  constructor(private gameStoreService: GameStoreService) {
+  constructor(private readonly gameStoreService: GameStoreService) {
     this.tab = gameStoreService.gamestate.jeux;
   }
 
@@ -31,18 +31,4 @@ export class GridComponent {
     this.selectionCase.emit({ligne, colonne});
   }
 
-  get(ligne: number, colonne: number): string {
-    if (this.tab) {
-      const valeur = this.tab.get(ligne, colonne);
-      if (valeur === JoueurEnum.JOUEUR1) {
-        return JoueursConstantes.JOUEUR1_AFFICHAGE;
-      } else if (valeur === JoueurEnum.JOUEUR2) {
-        return JoueursConstantes.JOUEUR2_AFFICHAGE;
-      } else {
-        return '';
-      }
-    } else {
-      return '';
-    }
-  }
 }

@@ -38,24 +38,9 @@ export class GridModel {
   }
 
   get(ligne: number, colonne: number): JoueurEnum | null {
-    if (ligne == 0 && colonne === 0) {
-      return this.champ00();
-    } else if (ligne == 0 && colonne === 1) {
-      return this.champ01();
-    } else if (ligne == 0 && colonne === 2) {
-      return this.champ02();
-    } else if (ligne == 1 && colonne === 0) {
-      return this.champ10();
-    } else if (ligne == 1 && colonne === 1) {
-      return this.champ11();
-    } else if (ligne == 1 && colonne === 2) {
-      return this.champ12();
-    } else if (ligne == 2 && colonne === 0) {
-      return this.champ20();
-    } else if (ligne == 2 && colonne === 1) {
-      return this.champ21();
-    } else if (ligne == 2 && colonne === 2) {
-      return this.champ22();
+    if (ligne >= 0 && ligne <= 2 && colonne >= 0 && colonne <= 2 &&
+      ligne < this.grid2.length && colonne < this.grid2[ligne].length) {
+      return this.grid2[ligne][colonne]();
     } else {
       return null;
     }
@@ -75,18 +60,6 @@ export class GridModel {
       }
     }
     return true;
-  }
-
-  getCopy(): Array<Array<JoueurEnum | null>> {
-    const tab: Array<Array<JoueurEnum | null>> = [];
-    for (let i = 0; i < 3; i++) {
-      const tab2: Array<JoueurEnum | null> = [];
-      tab.push(tab2);
-      for (let j = 0; j < 3; j++) {
-        tab2.push(this.grid2[i][j]());
-      }
-    }
-    return tab;
   }
 
   selectionCase(ligne: number, colonne: number, joueurCourant: JoueurEnum): boolean {

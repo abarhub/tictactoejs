@@ -13,7 +13,7 @@ export class GameStoreService {
 
   public modification = signal<GameCurrentState | null>(null);
 
-  constructor(private gridService: GridService) {
+  constructor(private readonly gridService: GridService) {
 
     this.gamestate = {
       jeux: gridService.creerGrilleVide(),
@@ -34,7 +34,7 @@ export class GameStoreService {
 
   public caseSelectionnee(caseSelectionnee: CaseModel): void {
     if (!this.gamestate.fini) {
-      var modif = this.gamestate.jeux.selectionCase(caseSelectionnee.ligne - 1, caseSelectionnee.colonne - 1, this.gamestate.joueurCourant);
+      const modif = this.gamestate.jeux.selectionCase(caseSelectionnee.ligne - 1, caseSelectionnee.colonne - 1, this.gamestate.joueurCourant);
       if (modif) {
         if (this.gamestate.joueurCourant === JoueurEnum.JOUEUR1) {
           this.gamestate.joueurCourant = JoueurEnum.JOUEUR2;

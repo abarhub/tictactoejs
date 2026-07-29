@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   title = 'tictactoejs';
 
-  constructor(private gameStore: GameStoreService) {
+  constructor(private readonly gameStore: GameStoreService) {
 
   }
 
