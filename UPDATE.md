@@ -22,13 +22,6 @@ Ensuite il faut monter la version de bootstrap et popper en faisant attention à
 npm i bootstrap@XXX @popperjs/core@XXX
 ```
 
-* Mise à jour de ngrx
-
-La documentation pour la mise à jour est [ici](https://ngrx.io/guide/migration/v15)
-```shell
-ng update @ngrx/store@XXX
-```
-
 * Analyse des problèmes de sécurité
 Pour analyser les problèmes de sécurité, il faut executer :
 ```shell
