@@ -13,7 +13,7 @@
     "copysite": "xcopy /e /v /y .\\dist\\tictactoejs\\browser .\\docs\\",
     "rmsite": "rimraf ./docs/",
     "generatesite": "npm-run-all rmsite copysite",
-    "sonar": "sonar-scanner"
+    "sonar": "sonar-scanner-npm"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +39,7 @@
     "@angular/build": "^22.0.8",
     "@angular/cli": "^22.0.8",
     "@angular/compiler-cli": "^22.0.8",
+    "@sonar/scan": "^5.0.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "istanbul-lib-instrument": "^6.0.3",
@@ -49,7 +50,6 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "sonarqube-scanner": "^4.3.5",
     "ts-node": "~8.3.0",
     "typescript": "~6.0.3"
   }
