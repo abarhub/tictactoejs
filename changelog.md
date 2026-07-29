@@ -1,3 +1,7 @@
+# version 1.10.0 (29/07/2026)
+* passage à angular 22.0.8
+* remplacement de ngrx par des signaux 
+
 # version 1.9.0 (28/06/2026)
 * passage à angular 21.2.17
 
