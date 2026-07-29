@@ -22,6 +22,11 @@ Ensuite il faut monter la version de bootstrap et popper en faisant attention à
 npm i bootstrap@XXX @popperjs/core@XXX
 ```
 
+* Pour mettre à jour le client sonar
+```shell
+npm install --global @sonar/scan
+```
+
 * Analyse des problèmes de sécurité
 Pour analyser les problèmes de sécurité, il faut executer :
 ```shell
