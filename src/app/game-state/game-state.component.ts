@@ -13,9 +13,9 @@ import {GameCurrentState} from '../model/game-current-state';
 })
 export class GameStateComponent {
 
-  protected joueurCourant: JoueurEnum = JoueurEnum.JOUEUR1;
-  protected jeuxTermine = false;
-  protected joueurGagnant: JoueurEnum | null = null;
+  joueurCourant: JoueurEnum = JoueurEnum.JOUEUR1;
+  jeuxTermine = false;
+  joueurGagnant: JoueurEnum | null = null;
 
   protected joueurEnum: typeof JoueurEnum = JoueurEnum;
 
